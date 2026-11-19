@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | Our Edge Media</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS (Animate On Scroll) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0b0b0b;
+            padding: 85px 20px 40px;
+            position: relative;
+            overflow-x: clip;
+            overflow-y: visible;
+        }
+
+        /* Single unified modern scrollbar */
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0b0b0b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 6px;
+            border: 2px solid #0b0b0b;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFD400;
+        }
+
+        /* ================= FLOATING SCROLL TO TOP BUTTON ================= */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            width: 54px;
+            height: 54px;
+            background: #121212;
+            color: #FFD400;
+            border: 4.5px solid #FFD400;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+            cursor: pointer;
+            z-index: 99999;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(20px) scale(0.85);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 20px rgba(255, 212, 0, 0.75), 0 0 45px rgba(255, 212, 0, 0.35);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: #181818;
+            box-shadow: 0 0 30px rgba(255, 212, 0, 0.95), 0 0 55px rgba(255, 212, 0, 0.55);
+            color: #FFD400;
+        }
+
+        .back-to-top:active {
+            transform: scale(0.94);
+        }
+
+        /* glowing yellow background */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 250px;
+            height: 250px;
+            background: #ffd700;
+            filter: blur(120px);
+            opacity: 0.25;
+            animation: float 6s infinite alternate;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body::before {
+            top: -60px;
+            left: -60px;
+        }
+
+        body::after {
+            bottom: -60px;
+            right: -60px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(40px);
+            }
+        }
+
+        /* floating icons background */
+        .icon {
+            position: fixed;
+            font-size: 28px;
+            color: rgba(255, 215, 0, 0.2);
+            animation: floatIcons 10s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes floatIcons {
+            0% {
+                transform: translateY(100vh) scale(0.8);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* random positions */
+        .icon:nth-child(1) {
+            left: 10%;
+            animation-duration: 12s;
+        }
+
+        .icon:nth-child(2) {
+            left: 25%;
+            animation-duration: 9s;
+        }
+
+        .icon:nth-child(3) {
+            left: 40%;
+            animation-duration: 11s;
+        }
+
+        .icon:nth-child(4) {
+            left: 60%;
+            animation-duration: 8s;
+        }
+
+        .icon:nth-child(5) {
+            left: 75%;
+            animation-duration: 13s;
+        }
+
+        .icon:nth-child(6) {
+            left: 90%;
+            animation-duration: 10s;
+        }
+
+        .back-home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #FFD700;
+            color: #111;
+            text-decoration: none;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            z-index: 99999;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: .3s;
+        }
+
+        .back-home-btn:hover {
+            background: #fff;
+            transform: translateY(-2px);
+        }
+
+        .card {
+            position: relative;
+            width: min(100%, 400px);
+            padding: 32px 28px;
+            background: #111;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.12);
+            z-index: 10;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 22px;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        label {
+            font-size: 13px;
+            color: #eee;
+            font-weight: 600;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 13px 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            background: #1b1b1b;
+            color: #fff;
+            outline: none;
+            font-size: 14px;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+            background: #202020;
+        }
+
+        .input-box {
+            margin-bottom: 16px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            color: #fff;
+            font-size: 14px;
+            margin-top: 6px;
+        }
+
+        .radio-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .radio-group input[type="radio"] {
+            accent-color: #FFD700;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(45deg, #ffd700, #ffb800);
+            color: #111;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            background: #fff;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 75px 15px 30px;
+            }
+
+            .card {
+                padding: 26px 20px;
+            }
+
+            .back-home-btn {
+                top: 15px;
+                left: 15px;
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="index.html" class="back-home-btn">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+    </a>
+
+    <!-- Floating Social Icons -->
+    <i class="fa-brands fa-whatsapp icon"></i>
+    <i class="fa-brands fa-instagram icon"></i>
+    <i class="fa-brands fa-facebook icon"></i>
+    <i class="fa-brands fa-youtube icon"></i>
+    <i class="fa-brands fa-telegram icon"></i>
+    <i class="fa-brands fa-twitter icon"></i>
+
+    <div class="card" data-aos="zoom-in" data-aos-duration="850">
+        <h2>Join Us</h2>
+
+        <form onsubmit="event.preventDefault(); alert('Application submitted successfully! Our team will contact you soon.');">
+            <div class="input-box">
+                <label>Name</label>
+                <input type="text" placeholder="Enter your name" required>
+            </div>
+
+            <div class="input-box">
+                <label>Mobile Number</label>
+                <input type="tel" placeholder="Enter mobile number" required>
+            </div>
+
+            <div class="input-box">
+                <label>Location</label>
+                <input type="text" placeholder="Your city/location" required>
+            </div>
+
+            <div class="input-box">
+                <label>Brand Name</label>
+                <input type="text" placeholder="Your brand or channel name" required>
+            </div>
+
+            <div class="input-box">
+                <label>Work Type</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="work" value="Freelancing" checked> Freelancing</label>
+                    <label><input type="radio" name="work" value="Monthly"> Monthly</label>
+                </div>
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+
+    <!-- ================= FLOATING BACK TO TOP ================= -->
+    <button id="backToTop" class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Back to Top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- AOS SCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 850,
+                easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                once: false
+            });
+        }
+
+        // Back to top scroll handler
+        const btt = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            if (btt) {
+                if (winScroll > 150) btt.classList.add("show");
+                else btt.classList.remove("show");
+            }
+        }, { passive: true });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About & Contact | Our Edge Media</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- AOS (Animate On Scroll) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        body {
+            background: #0b0b0b;
+            color: #fff;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: clip;
+            overflow-y: visible !important;
+            min-height: 100vh;
+        }
+
+        /* Single unified modern scrollbar */
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0b0b0b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 6px;
+            border: 2px solid #0b0b0b;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFD400;
+        }
+
+        /* ================= TOP SCROLL PROGRESS BAR ================= */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3.5px;
+            background: linear-gradient(90deg, #FFD400, #FFA500, #FFF, #FFD400);
+            background-size: 200% 100%;
+            animation: progressGlow 3s linear infinite;
+            box-shadow: 0 0 14px rgba(255, 212, 0, 0.95), 0 0 24px rgba(255, 212, 0, 0.6);
+            z-index: 999999;
+            width: 0%;
+            transition: width 0.08s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes progressGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* ================= FLOATING SCROLL TO TOP BUTTON ================= */
+        .back-to-top {
+            position: fixed;
+            bottom: 96px;
+            right: 25px;
+            width: 54px;
+            height: 54px;
+            background: #121212;
+            color: #FFD400;
+            border: 4.5px solid #FFD400;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+            cursor: pointer;
+            z-index: 99999;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(20px) scale(0.85);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 20px rgba(255, 212, 0, 0.75), 0 0 45px rgba(255, 212, 0, 0.35);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: #181818;
+            box-shadow: 0 0 30px rgba(255, 212, 0, 0.95), 0 0 55px rgba(255, 212, 0, 0.55);
+            color: #FFD400;
+        }
+
+        .back-to-top:active {
+            transform: scale(0.94);
+        }
+
+        /* ================= NAVIGATION BAR ================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            padding: 0 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(14, 14, 14, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 212, 0, 0.15);
+            z-index: 10000;
+            transition: height .3s cubic-bezier(0.16, 1, 0.3, 1), background .3s, box-shadow .3s, border-color .3s;
+        }
+
+        header.scrolled {
+            height: 64px;
+            background: rgba(8, 8, 8, 0.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 212, 0, 0.38);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 18px rgba(255, 212, 0, 0.15);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo span {
+            color: #FFD400;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: .3s;
+            position: relative;
+            padding: 6px 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #FFD400;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #FFD400;
+            border-radius: 2px;
+        }
+
+        .nav-cta {
+            background: #FFD400;
+            color: #111 !important;
+            padding: 9px 20px !important;
+            border-radius: 30px;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: .3s !important;
+        }
+
+        .nav-cta:hover {
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 212, 0, 0.3);
+        }
+
+        .menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: #FFD400;
+            font-size: 26px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 10002;
+            transition: .3s;
+            line-height: 1;
+        }
+
+        .menu-btn:hover {
+            color: #fff;
+        }
+
+        /* ================= MOBILE MENU DRAWER ================= */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+            z-index: 10001;
+        }
+
+        .menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: min(85vw, 320px);
+            height: 100vh;
+            background: #111;
+            border-left: 2px solid #FFD400;
+            padding: 25px 22px 35px;
+            display: flex;
+            flex-direction: column;
+            z-index: 10002;
+            transition: right .35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -10px 0 35px rgba(0, 0, 0, 0.85);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #222;
+            margin-bottom: 15px;
+        }
+
+        .menu-close-btn {
+            background: transparent;
+            border: none;
+            color: #FFD400;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 6px;
+            line-height: 1;
+            transition: .3s;
+        }
+
+        .menu-close-btn:hover {
+            color: #fff;
+        }
+
+        .mobile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .mobile-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 14px;
+            border-radius: 10px;
+            transition: .25s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .mobile-links a i {
+            color: #FFD400;
+            width: 20px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .mobile-links a:hover,
+        .mobile-links a.active {
+            background: rgba(255, 212, 0, 0.12);
+            color: #FFD400;
+            padding-left: 18px;
+        }
+
+        .mobile-menu .mob-cta {
+            margin-top: 20px;
+            background: #FFD400;
+            color: #111 !important;
+            padding: 14px;
+            text-align: center;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 15px;
+            transition: .3s;
+        }
+
+        .mobile-menu .mob-cta:hover {
+            background: #fff;
+        }
+
+        /* ================= ABOUT SECTION ================= */
+        section.about-sec {
+            padding: 120px 8% 70px;
+        }
+
+        .about-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: auto;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: min(100%, 320px);
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 460px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(255, 215, 0, .15);
+        }
+
+        .about-content {
+            flex: 1.2;
+            min-width: min(100%, 320px);
+        }
+
+        .about-content h2 {
+            font-size: clamp(30px, 4vw, 48px);
+            margin-bottom: 20px;
+            line-height: 1.25;
+            font-weight: 800;
+        }
+
+        .about-content h2 span {
+            color: #FFD700;
+        }
+
+        .about-content p {
+            color: #cccccc;
+            font-size: clamp(15px, 1.8vw, 17px);
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 28px 0;
+        }
+
+        .feature {
+            background: #151515;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: .3s;
+            border: 1px solid #222;
+        }
+
+        .feature:hover {
+            background: #FFD700;
+            color: #111;
+            transform: translateY(-3px);
+        }
+
+        .feature:hover i {
+            color: #111 !important;
+        }
+
+        .about-content .btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 15px 35px;
+            background: #FFD700;
+            color: #111;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 40px;
+            transition: .3s;
+        }
+
+        .about-content .btn:hover {
+            transform: translateY(-3px);
+            background: #fff;
+            box-shadow: 0 10px 25px rgba(255, 215, 0, .35);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            margin: 60px auto 0;
+            max-width: 1200px;
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: #151515;
+            padding: 28px 18px;
+            text-align: center;
+            border-radius: 15px;
+            border: 1px solid #222;
+            transition: .3s;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .stat-box:hover {
+            border-color: #FFD700;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.2);
+        }
+
+        .stat-box h3 {
+            font-size: clamp(30px, 3.5vw, 42px);
+            color: #FFD700;
+            margin-bottom: 8px;
+            font-weight: 800;
+            transition: transform .3s;
+        }
+
+        .stat-box:hover h3 {
+            transform: scale(1.08);
+        }
+
+        .stat-box p {
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        /* ================= CONTACT SECTION ================= */
+        section.contact-sec {
+            padding: 80px 8% 90px;
+            border-top: 1px solid #222;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .title h1 {
+            font-size: clamp(30px, 4vw, 48px);
+            font-weight: 800;
+        }
+
+        .title span {
+            color: #FFD400;
+        }
+
+        .title p {
+            margin-top: 12px;
+            color: #bbb;
+            font-size: clamp(15px, 1.8vw, 17px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            align-items: stretch;
+        }
+
+        .info {
+            background: #171717;
+            padding: 42px 36px;
+            border-radius: 20px;
+            border: 1px solid #282828;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        .info:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 212, 0, 0.45);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 212, 0, 0.12);
+        }
+
+        .info h2 {
+            margin-bottom: 22px;
+            color: #FFD400;
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .info-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 6px 0;
+            transition: transform 0.25s ease;
+        }
+
+        .item:hover {
+            transform: translateX(6px);
+        }
+
+        .item i {
+            width: 52px;
+            height: 52px;
+            background: #FFD400;
+            color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 20px;
+            margin-right: 18px;
+            flex-shrink: 0;
+            box-shadow: 0 6px 16px rgba(255, 212, 0, 0.3);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .item:hover i {
+            transform: scale(1.1) rotate(6deg);
+            background: #fff;
+        }
+
+        .item h4 {
+            margin-bottom: 4px;
+            font-size: 13px;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: .2s;
+            word-break: break-word;
+        }
+
+        .item a:hover {
+            color: #FFD400;
+        }
+
+        .social-box {
+            border-top: 1px solid #262626;
+            padding-top: 20px;
+            margin-top: auto;
+        }
+
+        .social-box span {
+            display: block;
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .social {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social a {
+            display: inline-flex;
+            width: 44px;
+            height: 44px;
+            justify-content: center;
+            align-items: center;
+            background: #FFD400;
+            color: #111;
+            border-radius: 50%;
+            font-size: 19px;
+            text-decoration: none;
+            transition: .3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 12px rgba(255, 212, 0, 0.25);
+        }
+
+        .social a:hover {
+            background: #fff;
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.35);
+        }
+
+        form {
+            background: #171717;
+            padding: 42px 36px;
+            border-radius: 20px;
+            border: 1px solid #282828;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        form:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 212, 0, 0.45);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 212, 0, 0.12);
+        }
+
+        form h2 {
+            color: #FFD400;
+            margin-bottom: 22px;
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .form-inputs {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border: 1px solid #2a2a2a;
+            outline: none;
+            background: #202020;
+            color: #fff;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #FFD400;
+            box-shadow: 0 0 14px rgba(255, 212, 0, 0.25);
+            background: #242424;
+        }
+
+        textarea {
+            min-height: 125px;
+            flex-grow: 1;
+            resize: vertical;
+        }
+
+        form button {
+            width: 100%;
+            padding: 15px;
+            background: #FFD400;
+            color: #111;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: .3s;
+            box-shadow: 0 6px 18px rgba(255, 212, 0, 0.3);
+            margin-top: 8px;
+        }
+
+        form button:hover {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.35);
+        }
+
+        /* ================= GOOGLE MAP PREVIEW CARD ================= */
+        .map-card-wrapper {
+            max-width: 1200px;
+            margin: 36px auto 0;
+            background: #171717;
+            border-radius: 20px;
+            border: 1px solid #282828;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .map-card-wrapper:hover {
+            border-color: rgba(255, 212, 0, 0.5);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 212, 0, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .map-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 32px;
+            border-bottom: 1px solid #242424;
+            background: linear-gradient(180deg, #1d1d1d 0%, #171717 100%);
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .map-pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            background: rgba(255, 212, 0, 0.12);
+            color: #FFD400;
+            border: 1px solid rgba(255, 212, 0, 0.35);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .map-info-text h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .map-info-text p {
+            font-size: 14px;
+            color: #aaa;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .open-maps-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #FFD400;
+            color: #111;
+            font-weight: 700;
+            font-size: 14px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(255, 212, 0, 0.3);
+        }
+
+        .open-maps-btn:hover {
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.35);
+        }
+
+        .map-frame-box {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            background: #111;
+        }
+
+        .map-frame-box iframe {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: 0;
+        }
+
+        /* ================= FLOATING WHATSAPP ================= */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .5);
+            z-index: 999;
+            transition: .3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #080808;
+            padding: 60px 8% 35px;
+            text-align: center;
+            border-top: 3px solid #FFD400;
+            color: #fff;
+        }
+
+        footer h2 {
+            font-size: clamp(24px, 3.5vw, 36px);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        footer h2 span {
+            color: #FFD400;
+        }
+
+        .footer-social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 26px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            margin: 10px 6px;
+            transition: .3s;
+        }
+
+        .wa-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        .ig-btn {
+            background: #FFD400;
+            color: #111;
+        }
+
+        .map-btn {
+            background: #FFD400;
+            color: #111;
+        }
+
+        .footer-social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 212, 0, 0.25);
+        }
+
+        footer hr {
+            border: 0;
+            height: 1px;
+            background: #222;
+            max-width: 800px;
+            margin: 25px auto;
+        }
+
+        footer p.copyright {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* ================= RESPONSIVE BREAKPOINTS ================= */
+        @media(max-width: 991px) {
+            header {
+                padding: 0 5%;
+                height: 68px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            section.about-sec {
+                padding: 100px 5% 50px;
+            }
+
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            section.contact-sec {
+                padding: 60px 5% 70px;
+            }
+
+            .map-card-wrapper {
+                margin-top: 30px;
+            }
+
+            .map-header-bar {
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .open-maps-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .map-frame-box {
+                height: 340px;
+            }
+        }
+
+        @media(max-width: 580px) {
+            header {
+                height: 64px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .info,
+            form {
+                padding: 25px 20px;
+            }
+
+            .whatsapp-float {
+                width: 54px;
+                height: 54px;
+                font-size: 26px;
+                right: 16px;
+                bottom: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP SCROLL PROGRESS BAR -->
+    <div id="scroll-progress"></div>
+
+    <!-- ================= TOP HEADER NAVIGATION ================= -->
+    <header>
+        <a href="index.html" class="logo">
+            <span>Our</span> Edge Media
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="Pricing.html">Pricing</a></li>
+            <li><a href="Portfolio.html">Portfolio</a></li>
+            <li><a href="OurTeam.html">OurTeam</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li>
+                <a href="https://wa.me/919196497565" target="_blank" class="nav-cta">
+                    <i class="fab fa-whatsapp"></i> Let's Talk
+                </a>
+            </li>
+        </ul>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open Navigation Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- MOBILE MENU DRAWER & OVERLAY -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">
+                <span>Our</span> Edge Media
+            </a>
+            <button class="menu-close-btn" id="menuCloseBtn" aria-label="Close Navigation Menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="mobile-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="services.html"><i class="fas fa-briefcase"></i> Services</a>
+            <a href="Pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+            <a href="Portfolio.html"><i class="fas fa-photo-film"></i> Portfolio</a>
+            <a href="OurTeam.html"><i class="fas fa-users"></i> OurTeam</a>
+            <a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a>
+        </div>
+
+        <a href="https://wa.me/919196497565" target="_blank" class="mob-cta">
+            <i class="fab fa-whatsapp"></i> WhatsApp Us
+        </a>
+    </div>
+
+    <!-- ================= ABOUT SECTION ================= -->
+    <section class="about-sec">
+        <div class="about-container">
+            <div class="about-image" data-aos="zoom-in" data-aos-duration="900">
+                <img src="assets/images/LOGO2.png" alt="Our Edge Media">
+            </div>
+
+            <div class="about-content" data-aos="fade-left" data-aos-duration="900" data-aos-delay="150">
+                <h2>Grow Your Brand With <span>OurEdgeMedia</span></h2>
+                <p>
+                    OurEdgeMedia is a creative social media management agency helping businesses,
+                    brands and creators build a strong online presence through premium content,
+                    video editing, branding and digital marketing.
+                </p>
+                <p>
+                    Our mission is to transform your social media into a powerful business asset
+                    that attracts customers, builds trust and increases sales.
+                </p>
+
+                <div class="features">
+                    <div class="feature"><i class="fas fa-check" style="color:#FFD400;margin-right:8px;"></i> Social Media Management</div>
+                    <div class="feature"><i class="fas fa-check" style="color:#FFD400;margin-right:8px;"></i> Professional Video Editing</div>
+                    <div class="feature"><i class="fas fa-check" style="color:#FFD400;margin-right:8px;"></i> Creative Graphic Design</div>
+                    <div class="feature"><i class="fas fa-check" style="color:#FFD400;margin-right:8px;"></i> Instagram Growth Strategy</div>
+                    <div class="feature"><i class="fas fa-check" style="color:#FFD400;margin-right:8px;"></i> Brand Identity Design</div>
+                    <div class="feature"><i class="fas fa-check" style="color:#FFD400;margin-right:8px;"></i> Paid Advertising</div>
+                </div>
+
+                <a href="RegistrationForm.html" class="btn">
+                    Let's Work Together
+                </a>
+            </div>
+        </div>
+
+        <div class="stats" data-aos="fade-up" data-aos-duration="800">
+            <div class="stat-box" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="counter" data-target="500" data-suffix="+">500+</h3>
+                <p>Happy Clients</p>
+            </div>
+            <div class="stat-box" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="counter" data-target="1200" data-suffix="+">1200+</h3>
+                <p>Projects Completed</p>
+            </div>
+            <div class="stat-box" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="counter" data-target="5" data-suffix="+">5+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-box" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="counter" data-target="99" data-suffix="%">99%</h3>
+                <p>Client Satisfaction</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CONTACT SECTION ================= -->
+    <section class="contact-sec">
+        <div class="title" data-aos="fade-up" data-aos-duration="800">
+            <h1>Contact <span>Us</span></h1>
+            <p>Let's Grow Your Business Together</p>
+        </div>
+
+        <div class="container">
+            <div class="info" data-aos="fade-right" data-aos-delay="150">
+                <div>
+                    <h2>Get In Touch</h2>
+                    <div class="info-items">
+                        <div class="item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <a href="tel:+919196497565">+91 9196497565</a>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <a href="mailto:ouredgemedia@gmail.com">ouredgemedia@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <i class="fab fa-instagram"></i>
+                            <div>
+                                <h4>Instagram</h4>
+                                <a href="https://www.instagram.com/ouredgemedia/" target="_blank">@ouredgemedia</a>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <i class="fas fa-location-dot"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <a href="https://maps.app.goo.gl/vgLReNCvaMgz1bqB9" target="_blank" rel="noopener noreferrer">Digixlonline, Gorakhpur, UP</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-box">
+                    <span>Connect Socially:</span>
+                    <div class="social">
+                        <a href="https://www.instagram.com/ouredgemedia/" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/919196497565" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:ouredgemedia@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://maps.app.goo.gl/vgLReNCvaMgz1bqB9" target="_blank" aria-label="Google Maps Location" title="View on Google Maps">
+                            <i class="fas fa-map-location-dot"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <form data-aos="fade-left" data-aos-delay="250" onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent successfully.');">
+                <h2>Send Message</h2>
+                <div class="form-inputs">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject">
+                    <textarea placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <!-- ================= GOOGLE MAPS PREVIEW ================= -->
+        <div class="map-card-wrapper" data-aos="fade-up" data-aos-duration="900" data-aos-delay="200">
+            <div class="map-header-bar">
+                <div class="map-info-text">
+                    <span class="map-pill-badge"><i class="fas fa-location-dot"></i> Live Map Preview</span>
+                    <h3>Digixlonline, Gorakhpur</h3>
+                    <p><i class="fas fa-map-pin" style="color:#FFD400;"></i> Bank Road, Golghar / St. Andrew's College, Gorakhpur, Uttar Pradesh 273001</p>
+                </div>
+                <a href="https://maps.app.goo.gl/vgLReNCvaMgz1bqB9" target="_blank" rel="noopener noreferrer" class="open-maps-btn">
+                    <i class="fas fa-arrow-up-right-from-square"></i> Open in Maps
+                </a>
+            </div>
+
+            <div class="map-frame-box">
+                <iframe
+                    src="https://maps.google.com/maps?q=Digixlonline%2C+Gorakhpur&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="420"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Digixlonline Gorakhpur Google Map">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING WHATSAPP -->
+    <a class="whatsapp-float" href="https://wa.me/919196497565" target="_blank" aria-label="WhatsApp Us">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ================= FOOTER ================= -->
+    <footer data-aos="fade-up" data-aos-duration="850">
+        <h2><span>Our</span> Edge Media</h2>
+        <div class="footer-links" data-aos="zoom-in" data-aos-delay="150">
+            <a href="https://wa.me/919196497565" target="_blank" class="footer-social-btn wa-btn">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://www.instagram.com/ouredgemedia/" target="_blank" class="footer-social-btn ig-btn">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://maps.app.goo.gl/vgLReNCvaMgz1bqB9" target="_blank" class="footer-social-btn map-btn" style="background:#FFD400;color:#111;">
+                <i class="fas fa-location-dot"></i> Google Maps
+            </a>
+        </div>
+        <hr>
+        <p class="copyright">
+            © 2026 <b style="color:#FFD400;">Our Edge Media</b>. All Rights Reserved.
+        </p>
+    </footer>
+
+    <!-- ================= FLOATING BACK TO TOP ================= -->
+    <button id="backToTop" class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Back to Top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const menuCloseBtn = document.getElementById("menuCloseBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const menuOverlay = document.getElementById("menuOverlay");
+
+        function openMobileMenu() {
+            if (mobileMenu && menuOverlay) {
+                mobileMenu.classList.add("open");
+                menuOverlay.classList.add("open");
+                document.body.style.overflow = "hidden";
+            }
+        }
+
+        function closeMobileMenu() {
+            if (mobileMenu && menuOverlay) {
+                mobileMenu.classList.remove("open");
+                menuOverlay.classList.remove("open");
+                document.body.style.overflow = "";
+            }
+        }
+
+        if (menuBtn) menuBtn.addEventListener("click", openMobileMenu);
+        if (menuCloseBtn) menuCloseBtn.addEventListener("click", closeMobileMenu);
+        if (menuOverlay) menuOverlay.addEventListener("click", closeMobileMenu);
+
+        document.querySelectorAll(".mobile-menu a").forEach(link => {
+            link.addEventListener("click", closeMobileMenu);
+        });
+
+        // STATS NUMBER COUNTING ANIMATION (HOVER & SCROLL)
+        function animateCounter(el) {
+            const target = parseInt(el.getAttribute('data-target'), 10);
+            const suffix = el.getAttribute('data-suffix') || '';
+            if (isNaN(target)) return;
+
+            if (el._animFrame) {
+                cancelAnimationFrame(el._animFrame);
+            }
+
+            const duration = 1000;
+            const startTime = performance.now();
+
+            function updateCount(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // easeOutCubic
+                const ease = 1 - Math.pow(1 - progress, 3);
+                const currentCount = Math.floor(ease * target);
+
+                el.textContent = currentCount + suffix;
+
+                if (progress < 1) {
+                    el._animFrame = requestAnimationFrame(updateCount);
+                } else {
+                    el.textContent = target + suffix;
+                    el._animFrame = null;
+                }
+            }
+
+            el._animFrame = requestAnimationFrame(updateCount);
+        }
+
+        // Trigger on cursor hover ("curcer le jane pe")
+        document.querySelectorAll('.stat-box').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const counter = card.querySelector('.counter');
+                if (counter) animateCounter(counter);
+            });
+        });
+
+        // Also trigger automatically on scroll into view
+        const statsSection = document.querySelector('.stats');
+        if (statsSection && 'IntersectionObserver' in window) {
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.querySelectorAll('.counter').forEach(c => animateCounter(c));
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+            statsObserver.observe(statsSection);
+        }
+
+        // ================= SCROLL-BASED ANIMATIONS & INTERACTIONS =================
+        function handleScrollEffects() {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = docHeight > 0 ? (winScroll / docHeight) * 100 : 0;
+
+            const progressBar = document.getElementById("scroll-progress");
+            if (progressBar) progressBar.style.width = scrolled + "%";
+
+            const header = document.querySelector("header");
+            if (header) {
+                if (winScroll > 50) header.classList.add("scrolled");
+                else header.classList.remove("scrolled");
+            }
+
+            const btt = document.getElementById("backToTop");
+            if (btt) {
+                if (winScroll > 150) btt.classList.add("show");
+                else btt.classList.remove("show");
+            }
+        }
+
+        window.addEventListener("scroll", handleScrollEffects, { passive: true });
+        handleScrollEffects();
+
+        const bttBtn = document.getElementById("backToTop");
+        if (bttBtn) {
+            bttBtn.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+    </script>
+
+    <!-- ================= AOS SCRIPT ================= -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 850,
+                easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                once: false,
+                offset: 60,
+                mirror: true
+            });
+        }
+    </script>
+
+</body>
+
+</html>

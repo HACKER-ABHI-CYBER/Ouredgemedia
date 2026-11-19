@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team | Our Edge Media</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- AOS (Animate On Scroll) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: clip;
+            overflow-y: visible !important;
+            min-height: 100vh;
+        }
+
+        /* Single unified modern scrollbar */
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 6px;
+            border: 2px solid #000;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFD400;
+        }
+
+        /* ================= TOP SCROLL PROGRESS BAR ================= */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3.5px;
+            background: linear-gradient(90deg, #FFD400, #FFA500, #FFF, #FFD400);
+            background-size: 200% 100%;
+            animation: progressGlow 3s linear infinite;
+            box-shadow: 0 0 14px rgba(255, 212, 0, 0.95), 0 0 24px rgba(255, 212, 0, 0.6);
+            z-index: 999999;
+            width: 0%;
+            transition: width 0.08s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes progressGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* ================= FLOATING SCROLL TO TOP BUTTON ================= */
+        .back-to-top {
+            position: fixed;
+            bottom: 96px;
+            right: 25px;
+            width: 54px;
+            height: 54px;
+            background: #121212;
+            color: #FFD400;
+            border: 4.5px solid #FFD400;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+            cursor: pointer;
+            z-index: 99999;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(20px) scale(0.85);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 20px rgba(255, 212, 0, 0.75), 0 0 45px rgba(255, 212, 0, 0.35);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: #181818;
+            box-shadow: 0 0 30px rgba(255, 212, 0, 0.95), 0 0 55px rgba(255, 212, 0, 0.55);
+            color: #FFD400;
+        }
+
+        .back-to-top:active {
+            transform: scale(0.94);
+        }
+
+        /* ================= NAVIGATION BAR ================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            padding: 0 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(14, 14, 14, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 212, 0, 0.15);
+            z-index: 10000;
+            transition: height .3s cubic-bezier(0.16, 1, 0.3, 1), background .3s, box-shadow .3s, border-color .3s;
+        }
+
+        header.scrolled {
+            height: 64px;
+            background: rgba(8, 8, 8, 0.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 212, 0, 0.38);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 18px rgba(255, 212, 0, 0.15);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo span {
+            color: #FFD400;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: .3s;
+            position: relative;
+            padding: 6px 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #FFD400;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #FFD400;
+            border-radius: 2px;
+        }
+
+        .nav-cta {
+            background: #FFD400;
+            color: #111 !important;
+            padding: 9px 20px !important;
+            border-radius: 30px;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: .3s !important;
+        }
+
+        .nav-cta:hover {
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 212, 0, 0.3);
+        }
+
+        .menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: #FFD400;
+            font-size: 26px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 10002;
+            transition: .3s;
+            line-height: 1;
+        }
+
+        .menu-btn:hover {
+            color: #fff;
+        }
+
+        /* ================= MOBILE MENU DRAWER ================= */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+            z-index: 10001;
+        }
+
+        .menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: min(85vw, 320px);
+            height: 100vh;
+            background: #111;
+            border-left: 2px solid #FFD400;
+            padding: 25px 22px 35px;
+            display: flex;
+            flex-direction: column;
+            z-index: 10002;
+            transition: right .35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: -10px 0 35px rgba(0, 0, 0, 0.85);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #222;
+            margin-bottom: 15px;
+        }
+
+        .menu-close-btn {
+            background: transparent;
+            border: none;
+            color: #FFD400;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 6px;
+            line-height: 1;
+            transition: .3s;
+        }
+
+        .menu-close-btn:hover {
+            color: #fff;
+        }
+
+        .mobile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .mobile-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 14px;
+            border-radius: 10px;
+            transition: .25s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .mobile-links a i {
+            color: #FFD400;
+            width: 20px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .mobile-links a:hover,
+        .mobile-links a.active {
+            background: rgba(255, 212, 0, 0.12);
+            color: #FFD400;
+            padding-left: 18px;
+        }
+
+        .mobile-menu .mob-cta {
+            margin-top: 20px;
+            background: #FFD400;
+            color: #111 !important;
+            padding: 14px;
+            text-align: center;
+            border-radius: 30px;
+            border: none;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 15px;
+            transition: .3s;
+        }
+
+        .mobile-menu .mob-cta:hover {
+            background: #fff;
+        }
+
+        /* ================= TEAM SECTION ================= */
+        .team-section {
+            padding: 120px 8% 80px;
+            text-align: center;
+        }
+
+        .team-title {
+            font-size: clamp(32px, 4.5vw, 52px);
+            color: #FFD700;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .team-subtitle {
+            color: #bbb;
+            margin-bottom: 60px;
+            font-size: clamp(15px, 1.8vw, 18px);
+        }
+
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 32px;
+            max-width: 1300px;
+            margin: auto;
+        }
+
+        .team-card {
+            background: #111;
+            border: 2px solid #222;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: .4s;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: #FFD700;
+            box-shadow: 0 15px 35px rgba(255, 215, 0, .25);
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            background: #1a1a1a;
+        }
+
+        .team-content {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .team-content h2 {
+            color: #FFD700;
+            font-size: 22px;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .role {
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .desc {
+            color: #aaa;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .social {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .social a {
+            text-decoration: none;
+            color: #111;
+            background: #FFD700;
+            padding: 9px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .social a:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background: #080808;
+            padding: 60px 8% 35px;
+            text-align: center;
+            border-top: 3px solid #FFD400;
+            color: #fff;
+        }
+
+        footer h2 {
+            font-size: clamp(24px, 3.5vw, 36px);
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        footer h2 span {
+            color: #FFD400;
+        }
+
+        .footer-social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 26px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            margin: 10px 6px;
+            transition: .3s;
+        }
+
+        .wa-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        .ig-btn {
+            background: #FFD400;
+            color: #111;
+        }
+
+        footer hr {
+            border: 0;
+            height: 1px;
+            background: #222;
+            max-width: 800px;
+            margin: 25px auto;
+        }
+
+        footer p.copyright {
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* ================= RESPONSIVE BREAKPOINTS ================= */
+        @media(max-width: 991px) {
+            header {
+                padding: 0 5%;
+                height: 68px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .team-section {
+                padding: 100px 5% 60px;
+            }
+        }
+
+        @media(max-width: 580px) {
+            header {
+                height: 64px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .team-container {
+                grid-template-columns: 1fr;
+            }
+
+            .team-card img {
+                height: 260px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP SCROLL PROGRESS BAR -->
+    <div id="scroll-progress"></div>
+
+    <!-- ================= TOP HEADER NAVIGATION ================= -->
+    <header>
+        <a href="index.html" class="logo">
+            <span>Our</span> Edge Media
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="Pricing.html">Pricing</a></li>
+            <li><a href="Portfolio.html">Portfolio</a></li>
+            <li><a href="OurTeam.html" class="active">OurTeam</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+                <a href="https://wa.me/919196497565" target="_blank" class="nav-cta">
+                    <i class="fab fa-whatsapp"></i> Let's Talk
+                </a>
+            </li>
+        </ul>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open Navigation Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- MOBILE MENU DRAWER & OVERLAY -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="logo">
+                <span>Our</span> Edge Media
+            </a>
+            <button class="menu-close-btn" id="menuCloseBtn" aria-label="Close Navigation Menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="mobile-links">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="services.html"><i class="fas fa-briefcase"></i> Services</a>
+            <a href="Pricing.html"><i class="fas fa-tags"></i> Pricing</a>
+            <a href="Portfolio.html"><i class="fas fa-photo-film"></i> Portfolio</a>
+            <a href="OurTeam.html" class="active"><i class="fas fa-users"></i> OurTeam</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+        </div>
+
+        <a href="https://wa.me/919196497565" target="_blank" class="mob-cta">
+            <i class="fab fa-whatsapp"></i> WhatsApp Us
+        </a>
+    </div>
+
+    <!-- ================= TEAM SECTION ================= -->
+    <section class="team-section">
+        <h1 class="team-title" data-aos="fade-up" data-aos-duration="800">OUR TEAM</h1>
+        <p class="team-subtitle" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            Meet the creative minds behind our success.
+        </p>
+
+        <div class="team-container">
+            <!-- Abhishek Rajbhar -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="assets/images/IMG_3922.JPG" alt="Abhishek Rajbhar">
+                <div class="team-content">
+                    <h2>Abhishek Rajbhar</h2>
+                    <div class="role">Founder / CEO</div>
+                    <p class="desc">
+                        Creative director and video editor driving digital growth and branding excellence for businesses worldwide.
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/ouredgemedia/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+                        <a href="https://wa.me/919196497565" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tanvi Gupta -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="assets/images/logo.png" alt="Tanvi Gupta">
+                <div class="team-content">
+                    <h2>Tanvi Gupta</h2>
+                    <div class="role">Ad Manager</div>
+                    <p class="desc">
+                        Specialist in lead generation, ad performance metrics, and paid social media campaigns that scale ROI.
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/ouredgemedia/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+                        <a href="https://wa.me/919196497565" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danish Aalam -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="assets/images/logo.png" alt="Danish Aalam">
+                <div class="team-content">
+                    <h2>Danish Aalam</h2>
+                    <div class="role">Manager</div>
+                    <p class="desc">
+                        Overseeing project workflows, client relations, and delivery timelines to maintain top service quality.
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/ouredgemedia/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+                        <a href="https://wa.me/919196497565" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alka Dubey -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="assets/images/logo.png" alt="Alka Dubey">
+                <div class="team-content">
+                    <h2>Alka Dubey</h2>
+                    <div class="role">Graphics Designer</div>
+                    <p class="desc">
+                        Designing stunning promotional visuals, carousel posts, brand identities, and eye-catching social creatives.
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/ouredgemedia/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+                        <a href="https://wa.me/919196497565" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Anjali Mishra -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="assets/images/anjali.jpeg" alt="Anjali Mishra">
+                <div class="team-content">
+                    <h2>Anjali Mishra</h2>
+                    <div class="role">SEO Specialist</div>
+                    <p class="desc">
+                        Optimizing organic discoverability, keyword strategies, and search presence for client platforms.
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/ouredgemedia/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+                        <a href="https://wa.me/919196497565" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Arohi Yadav -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="assets/images/logo.png" alt="Arohi Yadav">
+                <div class="team-content">
+                    <h2>Arohi Yadav</h2>
+                    <div class="role">Social Media Manager</div>
+                    <p class="desc">
+                        Managing content schedules, community interactions, engagement growth, and hashtag architectures.
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/ouredgemedia/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+                        <a href="https://wa.me/919196497565" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shwet Gupta -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="assets/images/logo.png" alt="Shwet Gupta">
+                <div class="team-content">
+                    <h2>Shwet Gupta</h2>
+                    <div class="role">Video Editor</div>
+                    <p class="desc">
+                        Mastering viral transitions, pacing, audio sound design, and trending Instagram and TikTok styles.
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/ouredgemedia/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+                        <a href="https://wa.me/919196497565" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Syarn -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="assets/images/logo.png" alt="Syarn">
+                <div class="team-content">
+                    <h2>Syarn</h2>
+                    <div class="role">Video Editor</div>
+                    <p class="desc">
+                        Specializing in cinematic color grading, motion graphics, storytelling, and high-retention reel edits.
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/ouredgemedia/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+                        <a href="https://wa.me/919196497565" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kashif -->
+            <div class="team-card" data-aos="fade-up" data-aos-delay="300">
+                <img src="assets/images/logo.png" alt="Kashif">
+                <div class="team-content">
+                    <h2>Kashif</h2>
+                    <div class="role">Video Editor</div>
+                    <p class="desc">
+                        Crafting high-impact promotional edits, 3D drops, beat-synced visuals, and dynamic business teasers.
+                    </p>
+                    <div class="social">
+                        <a href="https://www.instagram.com/ouredgemedia/" target="_blank"><i class="fab fa-instagram"></i>Instagram</a>
+                        <a href="https://wa.me/919196497565" target="_blank"><i class="fab fa-whatsapp"></i>Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer data-aos="fade-up" data-aos-duration="850">
+        <h2><span>Our</span> Edge Media</h2>
+        <div class="footer-links" data-aos="zoom-in" data-aos-delay="150">
+            <a href="https://wa.me/919196497565" target="_blank" class="footer-social-btn wa-btn">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://www.instagram.com/ouredgemedia/" target="_blank" class="footer-social-btn ig-btn">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://maps.app.goo.gl/vgLReNCvaMgz1bqB9" target="_blank" class="footer-social-btn map-btn" style="background:#FFD400;color:#111;">
+                <i class="fas fa-location-dot"></i> Google Maps
+            </a>
+        </div>
+        <hr>
+        <p class="copyright">
+            © 2026 <b style="color:#FFD400;">Our Edge Media</b>. All Rights Reserved.
+        </p>
+    </footer>
+
+    <!-- ================= FLOATING BACK TO TOP ================= -->
+    <button id="backToTop" class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Back to Top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const menuCloseBtn = document.getElementById("menuCloseBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const menuOverlay = document.getElementById("menuOverlay");
+
+        function openMobileMenu() {
+            if (mobileMenu && menuOverlay) {
+                mobileMenu.classList.add("open");
+                menuOverlay.classList.add("open");
+                document.body.style.overflow = "hidden";
+            }
+        }
+
+        function closeMobileMenu() {
+            if (mobileMenu && menuOverlay) {
+                mobileMenu.classList.remove("open");
+                menuOverlay.classList.remove("open");
+                document.body.style.overflow = "";
+            }
+        }
+
+        if (menuBtn) menuBtn.addEventListener("click", openMobileMenu);
+        if (menuCloseBtn) menuCloseBtn.addEventListener("click", closeMobileMenu);
+        if (menuOverlay) menuOverlay.addEventListener("click", closeMobileMenu);
+
+        document.querySelectorAll(".mobile-menu a").forEach(link => {
+            link.addEventListener("click", closeMobileMenu);
+        });
+
+        // ================= SCROLL-BASED ANIMATIONS & INTERACTIONS =================
+        function handleScrollEffects() {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = docHeight > 0 ? (winScroll / docHeight) * 100 : 0;
+
+            const progressBar = document.getElementById("scroll-progress");
+            if (progressBar) progressBar.style.width = scrolled + "%";
+
+            const header = document.querySelector("header");
+            if (header) {
+                if (winScroll > 50) header.classList.add("scrolled");
+                else header.classList.remove("scrolled");
+            }
+
+            const btt = document.getElementById("backToTop");
+            if (btt) {
+                if (winScroll > 150) btt.classList.add("show");
+                else btt.classList.remove("show");
+            }
+        }
+
+        window.addEventListener("scroll", handleScrollEffects, { passive: true });
+        handleScrollEffects();
+
+        const bttBtn = document.getElementById("backToTop");
+        if (bttBtn) {
+            bttBtn.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+    </script>
+
+    <!-- ================= AOS SCRIPT ================= -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 850,
+                easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+                once: false,
+                offset: 60,
+                mirror: true
+            });
+        }
+    </script>
+
+</body>
+
+</html>
