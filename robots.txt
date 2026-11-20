@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /assets/videos/
+Disallow: /.vscode/
+
+Sitemap: https://ouredgemedia.com/sitemap.xml
+

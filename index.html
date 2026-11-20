@@ -4,13 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Edge Media</title>
+    <title>Our Edge Media | Best Video Editing, Reels & Social Media Marketing Agency in Gorakhpur</title>
+    
+    <!-- PRIMARY SEO META TAGS -->
+    <meta name="description" content="Our Edge Media is the premier video editing & social media marketing agency in Gorakhpur, India. We craft high-retention viral Reels, commercial ad videos, YouTube long-form content, and graphic designs to skyrocket your brand.">
+    <meta name="keywords" content="video editing agency, best video editor gorakhpur, reel editing service, youtube video editor, social media management agency, ad video production, commercial video maker, graphic designing gorakhpur, our edge media, digixlonline abhishek rajbhar">
+    <meta name="author" content="Abhishek Rajbhar">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://ouredgemedia.com/index.html">
+
+    <!-- GEO LOCAL SEO TAGS (GORAKHPUR, UP, INDIA) -->
+    <meta name="geo.region" content="IN-UP">
+    <meta name="geo.placename" content="Gorakhpur">
+    <meta name="geo.position" content="26.7606;83.3732">
+    <meta name="ICBM" content="26.7606, 83.3732">
+
+    <!-- OPEN GRAPH / FACEBOOK / WHATSAPP -->
+    <meta property="og:locale" content="en_IN">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Our Edge Media">
+    <meta property="og:title" content="Our Edge Media | Best Video Editing & Social Media Agency">
+    <meta property="og:description" content="High-retention viral reels, YouTube video editing, commercial ads, and social media brand growth by Our Edge Media.">
+    <meta property="og:url" content="https://ouredgemedia.com/index.html">
+    <meta property="og:image" content="assets/images/logo.png">
+
+    <!-- TWITTER CARDS -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Our Edge Media | Best Video Editing & Social Media Agency">
+    <meta name="twitter:description" content="Viral Reels, YouTube video editing & social media growth for creators and brands.">
+    <meta name="twitter:image" content="assets/images/logo.png">
+
+    <!-- SCHEMA.ORG JSON-LD STRUCTURED DATA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Our Edge Media",
+      "image": "https://ouredgemedia.com/assets/images/logo.png",
+      "@id": "https://ouredgemedia.com/#agency",
+      "url": "https://ouredgemedia.com",
+      "telephone": "+919196497565",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bank Road, Golghar / St. Andrew's College",
+        "addressLocality": "Gorakhpur",
+        "addressRegion": "Uttar Pradesh",
+        "postalCode": "273001",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 26.7606,
+        "longitude": 83.3732
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "10:00",
+        "closes": "20:00"
+      },
+      "sameAs": [
+        "https://www.instagram.com/ouredgemedia/",
+        "https://wa.me/919196497565",
+        "https://maps.app.goo.gl/vgLReNCvaMgz1bqB9"
+      ]
+    }
+    </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <!-- AOS (Animate On Scroll) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- PROFESSIONAL AGENCY FOOTER CSS -->
+    <link rel="stylesheet" href="footer.css">
+    <!-- AGENCY CUSTOM CURSOR CSS & JS -->
+    <link rel="stylesheet" href="cursor.css">
+    <script src="cursor.js" defer></script>
 
     <style>
         * {
@@ -75,8 +146,13 @@
         }
 
         @keyframes progressGlow {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 200% 50%;
+            }
         }
 
         /* ================= FLOATING SCROLL TO TOP BUTTON ================= */
@@ -463,9 +539,12 @@
         }
 
         @keyframes heroFloat {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px) rotate(0deg);
             }
+
             50% {
                 transform: translateY(-14px) rotate(0.8deg);
             }
@@ -1156,17 +1235,38 @@
             border-radius: 50%;
             background: #FFD400;
             font-size: 28px;
-            cursor: pointer;
+            cursor: grab;
             z-index: 9997;
             box-shadow: 0 10px 25px rgba(255, 212, 0, 0.4);
-            transition: .3s;
             display: flex;
             align-items: center;
             justify-content: center;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            perspective: 800px;
+            transform-style: preserve-3d;
+            will-change: transform, left, top;
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
         }
 
         .chat-open:hover {
-            transform: scale(1.08);
+            box-shadow: 0 14px 32px rgba(255, 212, 0, 0.55), 0 0 22px rgba(255, 212, 0, 0.3);
+        }
+
+        .chat-open.is-dragging {
+            cursor: grabbing !important;
+            box-shadow: 0 22px 50px rgba(255, 212, 0, 0.75), 0 0 35px rgba(255, 212, 0, 0.5) !important;
+            z-index: 99999 !important;
+            transition: none !important;
+        }
+
+        .chat-robot-icon {
+            display: inline-block;
+            pointer-events: none;
+            transform-style: preserve-3d;
+            transition: transform 0.25s ease;
+            line-height: 1;
         }
 
         .ai {
@@ -1723,40 +1823,93 @@
         </div>
     </section>
 
-    <!-- ================= FOOTER ================= -->
-    <footer data-aos="fade-up" data-aos-duration="850">
-        <h2><span>Our</span> Edge Media</h2>
-        <p class="footer-desc">
-            Our Edge Media is a creative Social Media Management Agency helping businesses,
-            brands and creators grow online through Professional Video Editing,
-            Trending Reels, Advertisement Videos, Promotion Videos,
-            Graphics Designing and Digital Branding.
-        </p>
+    <!-- ================= PROFESSIONAL AGENCY FOOTER ================= -->
+    <footer class="site-footer" data-aos="fade-up" data-aos-duration="850">
+        <div class="footer-container">
+            <!-- Col 1: Brand & Identity -->
+            <div class="footer-col footer-col-brand">
+                <a href="index.html" class="footer-logo"><span>Our</span> Edge Media</a>
+                <p class="footer-bio">
+                    Premier creative media agency specializing in high-retention video editing, viral short-form reels, commercial ads, and social media brand growth.
+                </p>
+                <div class="footer-badge">
+                    <span class="pulse-dot"></span>
+                    <span>Available for New Projects</span>
+                </div>
+                <div class="footer-social-icons">
+                    <a href="https://wa.me/919196497565" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-icon wa" title="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/ouredgemedia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon ig" title="Follow on Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://maps.app.goo.gl/vgLReNCvaMgz1bqB9" target="_blank" rel="noopener noreferrer" aria-label="Google Maps" class="social-icon map" title="Visit our Office"><i class="fas fa-location-dot"></i></a>
+                    <a href="mailto:ouredgemedia@gmail.com" aria-label="Email Us" class="social-icon email" title="Send Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
 
-        <div class="footer-links" data-aos="zoom-in" data-aos-delay="150">
-            <a href="https://wa.me/919196497565" target="_blank" class="footer-social-btn wa-btn">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-            <a href="https://www.instagram.com/ouredgemedia/" target="_blank" class="footer-social-btn ig-btn">
-                <i class="fab fa-instagram"></i> Instagram
-            </a>
-            <a href="https://maps.app.goo.gl/vgLReNCvaMgz1bqB9" target="_blank" class="footer-social-btn map-btn" style="background:#FFD400;color:#111;">
-                <i class="fas fa-location-dot"></i> Google Maps
-            </a>
+            <!-- Col 2: Quick Links -->
+            <div class="footer-col">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Our Services</a></li>
+                    <li><a href="Pricing.html"><i class="fas fa-chevron-right"></i> Pricing Plans</a></li>
+                    <li><a href="Portfolio.html"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+                    <li><a href="OurTeam.html"><i class="fas fa-chevron-right"></i> Our Team</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Agency</a></li>
+                    <li><a href="RegistrationForm.html"><i class="fas fa-chevron-right"></i> Join Us / Register</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Core Services -->
+            <div class="footer-col">
+                <h3 class="footer-heading">Our Services</h3>
+                <ul class="footer-nav-list">
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Trending Reels &amp; Shorts</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Commercial Ad Videos</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> YouTube Long Form</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Brand Promotion Videos</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Graphic &amp; Poster Design</a></li>
+                    <li><a href="services.html"><i class="fas fa-chevron-right"></i> Social Media Management</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Contact & Office -->
+            <div class="footer-col">
+                <h3 class="footer-heading">Contact &amp; Office</h3>
+                <ul class="footer-contact-info">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Bank Road, Golghar / St. Andrew's College, Gorakhpur, UP 273001</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone-alt"></i>
+                        <a href="tel:+919196497565">+91 9196497565</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:ouredgemedia@gmail.com">ouredgemedia@gmail.com</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        <span>Mon – Sat: 10:00 AM – 8:00 PM IST</span>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <hr>
-
-        <p class="copyright">
-            © 2026 <b style="color:#FFD400;">Our Edge Media</b>. All Rights Reserved.<br>
-            Designed & Developed by
-            <span style="color:#FFD400;font-weight:bold;">Abhishek Rajbhar</span>
-        </p>
+        <!-- Footer Bottom Bar -->
+        <div class="footer-bottom-container">
+            <p class="copyright-text">
+                © 2026 <b style="color:#FFD400;">Our Edge Media</b>. All Rights Reserved.
+            </p>
+            <div class="footer-credits">
+                <span>Designed &amp; Developed by <b style="color:#FFD400;">Abhishek Rajbhar</b></span>
+            </div>
+        </div>
     </footer>
 
     <!-- ================= SMART WEBSITE AI CHAT ================= -->
-    <button class="chat-open" onclick="openChat()" aria-label="Open AI Assistant">
-        🤖
+    <button class="chat-open" id="chatOpenBtn" aria-label="Open AI Assistant"
+        title="Drag to move anywhere • Click to chat">
+        <span class="chat-robot-icon">🤖</span>
     </button>
 
     <div class="ai" id="ai">
@@ -1778,6 +1931,9 @@
             <button onclick="ask()">Send</button>
         </div>
     </div>
+
+    <!-- GOOGLE SHEET API SCRIPT -->
+    <script src="sheet-api.js"></script>
 
     <!-- ================= JAVASCRIPT ================= -->
     <script>
@@ -1827,7 +1983,7 @@
             function updateCount(currentTime) {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                
+
                 // easeOutCubic
                 const ease = 1 - Math.pow(1 - progress, 3);
                 const currentCount = Math.floor(ease * target);
@@ -1900,11 +2056,67 @@
             if (popup) popup.classList.remove("active");
         }
 
-        // AI CHATBOT
+        // AI CHATBOT POSITIONING & CONTROLS
+        function positionAiChat() {
+            const ai = document.getElementById("ai");
+            const btn = document.getElementById("chatOpenBtn") || document.querySelector(".chat-open");
+            if (!ai || !btn) return;
+
+            if (window.innerWidth <= 600) {
+                ai.style.left = "15px";
+                ai.style.right = "15px";
+                ai.style.bottom = "84px";
+                ai.style.top = "auto";
+                ai.style.width = "auto";
+                return;
+            }
+
+            // If button has not been dragged from initial home place, use clean default CSS
+            if (!btn.dataset.hasBeenMoved) {
+                ai.style.left = "";
+                ai.style.right = "22px";
+                ai.style.bottom = "98px";
+                ai.style.top = "";
+                ai.style.width = "";
+                return;
+            }
+
+            const btnRect = btn.getBoundingClientRect();
+            const aiWidth = Math.min(380, window.innerWidth - 30);
+            const aiHeight = Math.min(560, window.innerHeight - 40);
+
+            // Prefer placing above button; if not enough room, place below
+            let top;
+            if (btnRect.top - aiHeight - 15 >= 10) {
+                top = btnRect.top - aiHeight - 15;
+            } else if (btnRect.bottom + 15 + aiHeight <= window.innerHeight - 10) {
+                top = btnRect.bottom + 15;
+            } else {
+                top = Math.max(10, (window.innerHeight - aiHeight) / 2);
+            }
+
+            let left;
+            if (btnRect.left + aiWidth > window.innerWidth - 15) {
+                left = window.innerWidth - aiWidth - 15;
+            } else if (btnRect.left < 15) {
+                left = 15;
+            } else {
+                left = btnRect.left;
+            }
+
+            ai.style.left = `${left}px`;
+            ai.style.top = `${top}px`;
+            ai.style.right = "auto";
+            ai.style.bottom = "auto";
+        }
+
         function openChat() {
             const box = document.getElementById("ai");
             if (box) {
                 box.classList.toggle("open");
+                if (box.classList.contains("open")) {
+                    positionAiChat();
+                }
             }
         }
 
@@ -1936,10 +2148,227 @@
             setTimeout(() => {
                 chat.innerHTML += `<div class="msg bot">${reply}</div>`;
                 chat.scrollTop = chat.scrollHeight;
+
+                // Send chat query to Google Sheet
+                if (typeof sendToGoogleSheet === "function") {
+                    sendToGoogleSheet({
+                        formType: "chat",
+                        query: text,
+                        reply: reply
+                    });
+                }
             }, 300);
 
             input.value = "";
         }
+
+        // ================= FRAMER MOTION & ORBIT CONTROLS FOR AI CHAT BUTTON =================
+        (function initDraggableChatButton() {
+            const btn = document.getElementById("chatOpenBtn") || document.querySelector(".chat-open");
+            if (!btn) return;
+
+            const robotIcon = btn.querySelector(".chat-robot-icon");
+            let isDragging = false;
+            let hasMoved = false;
+            let startPointerX = 0;
+            let startPointerY = 0;
+            let initialLeft = 0;
+            let initialTop = 0;
+            let lastX = 0;
+            let lastY = 0;
+            let velX = 0;
+            let velY = 0;
+
+            // 1. Orbit Controls 3D tilt on hover (when idle / pointer move over button)
+            btn.addEventListener("pointermove", (e) => {
+                if (isDragging) return;
+                const rect = btn.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const normX = (e.clientX - centerX) / (rect.width / 2);
+                const normY = (e.clientY - centerY) / (rect.height / 2);
+
+                const tiltX = -normY * 18;
+                const tiltY = normX * 18;
+
+                btn.style.transform = `perspective(600px) scale(1.1) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateZ(8px)`;
+                if (robotIcon) {
+                    robotIcon.style.transform = `translateZ(14px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
+                }
+            });
+
+            btn.addEventListener("pointerleave", () => {
+                if (isDragging) return;
+                btn.style.transform = "perspective(600px) scale(1) rotateX(0deg) rotateY(0deg) translateZ(0px)";
+                if (robotIcon) {
+                    robotIcon.style.transform = "translateZ(0px)";
+                }
+            });
+
+            // 2. Drag Start (Pointer Down)
+            btn.addEventListener("pointerdown", (e) => {
+                if (e.button !== 0) return; // Only primary mouse/touch button
+
+                isDragging = true;
+                hasMoved = false;
+                startPointerX = e.clientX;
+                startPointerY = e.clientY;
+                lastX = e.clientX;
+                lastY = e.clientY;
+                velX = 0;
+                velY = 0;
+
+                const rect = btn.getBoundingClientRect();
+                initialLeft = rect.left;
+                initialTop = rect.top;
+
+                btn.setPointerCapture(e.pointerId);
+                btn.classList.add("is-dragging");
+
+                // Framer motion spring lift & scale
+                btn.style.transform = "perspective(600px) scale(1.18) rotateX(0deg) rotateY(0deg) translateZ(18px)";
+            });
+
+            // 3. Drag Move with 3D Orbit Motion Physics
+            btn.addEventListener("pointermove", (e) => {
+                if (!isDragging) return;
+
+                const deltaX = e.clientX - startPointerX;
+                const deltaY = e.clientY - startPointerY;
+
+                if (!hasMoved && (Math.hypot(deltaX, deltaY) > 5)) {
+                    hasMoved = true;
+                    btn.dataset.dragged = "true";
+                    btn.dataset.hasBeenMoved = "true";
+
+                    // Switch from right/bottom to left/top positioning
+                    btn.style.right = "auto";
+                    btn.style.bottom = "auto";
+                }
+
+                if (hasMoved) {
+                    velX = e.clientX - lastX;
+                    velY = e.clientY - lastY;
+                    lastX = e.clientX;
+                    lastY = e.clientY;
+
+                    // Clamping inside viewport bounds with padding
+                    const btnWidth = btn.offsetWidth;
+                    const btnHeight = btn.offsetHeight;
+                    const minX = 10;
+                    const maxX = window.innerWidth - btnWidth - 10;
+                    const minY = 10;
+                    const maxY = window.innerHeight - btnHeight - 10;
+
+                    let newLeft = initialLeft + deltaX;
+                    let newTop = initialTop + deltaY;
+
+                    newLeft = Math.max(minX, Math.min(maxX, newLeft));
+                    newTop = Math.max(minY, Math.min(maxY, newTop));
+
+                    btn.style.left = `${newLeft}px`;
+                    btn.style.top = `${newTop}px`;
+
+                    // Orbit Controls 3D tilt tracking velocity and drag direction
+                    const orbitX = Math.max(-26, Math.min(26, -velY * 2.5));
+                    const orbitY = Math.max(-26, Math.min(26, velX * 2.5));
+
+                    btn.style.transform = `perspective(600px) scale(1.18) rotateX(${orbitX.toFixed(2)}deg) rotateY(${orbitY.toFixed(2)}deg) translateZ(20px)`;
+                    if (robotIcon) {
+                        robotIcon.style.transform = `translateZ(20px) rotateX(${orbitX.toFixed(2)}deg) rotateY(${orbitY.toFixed(2)}deg)`;
+                    }
+
+                    // Dynamically position chat box if open
+                    const aiBox = document.getElementById("ai");
+                    if (aiBox && aiBox.classList.contains("open")) {
+                        positionAiChat();
+                    }
+                }
+            });
+
+            // 4. Drag End (Pointer Up / Cancel)
+            function onPointerUp(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                btn.classList.remove("is-dragging");
+
+                try {
+                    btn.releasePointerCapture(e.pointerId);
+                } catch (_) { }
+
+                // Framer motion spring settling
+                btn.style.transform = "perspective(600px) scale(1) rotateX(0deg) rotateY(0deg) translateZ(0px)";
+                if (robotIcon) {
+                    robotIcon.style.transform = "translateZ(0px)";
+                }
+
+                if (hasMoved) {
+                    setTimeout(() => {
+                        btn.dataset.dragged = "false";
+                    }, 50);
+                }
+            }
+
+            btn.addEventListener("pointerup", onPointerUp);
+            btn.addEventListener("pointercancel", onPointerUp);
+
+            // 5. Click handler - Opens chat ONLY if user tapped/clicked without dragging
+            btn.addEventListener("click", (e) => {
+                if (btn.dataset.dragged === "true" || hasMoved) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    btn.dataset.dragged = "false";
+                    hasMoved = false;
+                    return false;
+                }
+                openChat();
+            });
+
+            // 6. Double Click: Smoothly resets back to initial home place
+            btn.addEventListener("dblclick", (e) => {
+                e.preventDefault();
+                resetChatButtonPosition();
+            });
+
+            function resetChatButtonPosition() {
+                delete btn.dataset.hasBeenMoved;
+                btn.style.transition = "all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)";
+                btn.style.left = "";
+                btn.style.top = "";
+                btn.style.right = "";
+                btn.style.bottom = "";
+                btn.style.transform = "perspective(600px) scale(1) rotateX(0deg) rotateY(0deg) translateZ(0px)";
+
+                setTimeout(() => {
+                    btn.style.transition = "";
+                    const aiBox = document.getElementById("ai");
+                    if (aiBox && aiBox.classList.contains("open")) {
+                        positionAiChat();
+                    }
+                }, 520);
+            }
+
+            // 7. Keep inside viewport on window resize
+            window.addEventListener("resize", () => {
+                if (!btn.dataset.hasBeenMoved) return;
+                const rect = btn.getBoundingClientRect();
+                const minX = 10;
+                const maxX = window.innerWidth - btn.offsetWidth - 10;
+                const minY = 10;
+                const maxY = window.innerHeight - btn.offsetHeight - 10;
+
+                const clampedX = Math.max(minX, Math.min(maxX, rect.left));
+                const clampedY = Math.max(minY, Math.min(maxY, rect.top));
+
+                btn.style.left = `${clampedX}px`;
+                btn.style.top = `${clampedY}px`;
+
+                const aiBox = document.getElementById("ai");
+                if (aiBox && aiBox.classList.contains("open")) {
+                    positionAiChat();
+                }
+            }, { passive: true });
+        })();
 
         // ================= SCROLL-BASED ANIMATIONS & INTERACTIONS =================
         function handleScrollEffects() {
@@ -1999,7 +2428,8 @@
     </script>
 
     <!-- ================= FLOATING BACK TO TOP ================= -->
-    <button id="backToTop" class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" aria-label="Back to Top" title="Back to Top">
+    <button id="backToTop" class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+        aria-label="Back to Top" title="Back to Top">
         <i class="fas fa-arrow-up"></i>
     </button>
 

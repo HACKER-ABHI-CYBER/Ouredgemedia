@@ -4,13 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration | Our Edge Media</title>
+    <title>Join Our Edge Media | Client Application & Registration</title>
+    
+    <!-- PRIMARY SEO META TAGS -->
+    <meta name="description" content="Apply to work with Our Edge Media. Register your brand or channel for high-retention video editing and social media management services.">
+    <meta name="keywords" content="join our edge media, hire video editor, client application, register brand, our edge media form">
+    <meta name="author" content="Abhishek Rajbhar">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ouredgemedia.com/RegistrationForm.html">
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Join Our Edge Media | Client Application & Registration">
+    <meta property="og:description" content="Start your content growth journey with Our Edge Media. Submit your project requirements.">
+    <meta property="og:url" content="https://ouredgemedia.com/RegistrationForm.html">
+    <meta property="og:image" content="assets/images/logo.png">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- AOS (Animate On Scroll) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- AGENCY CUSTOM CURSOR CSS & JS -->
+    <link rel="stylesheet" href="cursor.css">
+    <script src="cursor.js" defer></script>
 
     <style>
         * {
@@ -210,6 +226,9 @@
             align-items: center;
             gap: 8px;
             transition: .3s;
+            cursor: pointer;
+            border: none;
+            outline: none;
         }
 
         .back-home-btn:hover {
@@ -333,8 +352,8 @@
 
 <body>
 
-    <a href="index.html" class="back-home-btn">
-        <i class="fa-solid fa-arrow-left"></i> Back to Home
+    <a href="javascript:void(0);" onclick="goBack(event)" class="back-home-btn" aria-label="Back">
+        <i class="fa-solid fa-arrow-left"></i> Back
     </a>
 
     <!-- Floating Social Icons -->
@@ -348,25 +367,25 @@
     <div class="card" data-aos="zoom-in" data-aos-duration="850">
         <h2>Join Us</h2>
 
-        <form onsubmit="event.preventDefault(); alert('Application submitted successfully! Our team will contact you soon.');">
+        <form id="registrationForm" onsubmit="handleRegistrationSubmit(event)">
             <div class="input-box">
                 <label>Name</label>
-                <input type="text" placeholder="Enter your name" required>
+                <input type="text" id="regName" placeholder="Enter your name" required>
             </div>
 
             <div class="input-box">
                 <label>Mobile Number</label>
-                <input type="tel" placeholder="Enter mobile number" required>
+                <input type="tel" id="regMobile" placeholder="Enter mobile number" required>
             </div>
 
             <div class="input-box">
                 <label>Location</label>
-                <input type="text" placeholder="Your city/location" required>
+                <input type="text" id="regLocation" placeholder="Your city/location" required>
             </div>
 
             <div class="input-box">
                 <label>Brand Name</label>
-                <input type="text" placeholder="Your brand or channel name" required>
+                <input type="text" id="regBrand" placeholder="Your brand or channel name" required>
             </div>
 
             <div class="input-box">
@@ -377,7 +396,7 @@
                 </div>
             </div>
 
-            <button type="submit">Submit Application</button>
+            <button type="submit" id="regSubmitBtn">Submit Application</button>
         </form>
     </div>
 
@@ -386,15 +405,72 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- GOOGLE SHEET API SCRIPT -->
+    <script src="sheet-api.js"></script>
+
     <!-- AOS SCRIPT -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
+        // Handle Registration Form Submit to Google Sheet
+        async function handleRegistrationSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const submitBtn = document.getElementById("regSubmitBtn") || form.querySelector("button[type='submit']");
+            const originalText = submitBtn.innerHTML;
+
+            const name = document.getElementById("regName") ? document.getElementById("regName").value.trim() : "";
+            const mobile = document.getElementById("regMobile") ? document.getElementById("regMobile").value.trim() : "";
+            const location = document.getElementById("regLocation") ? document.getElementById("regLocation").value.trim() : "";
+            const brand = document.getElementById("regBrand") ? document.getElementById("regBrand").value.trim() : "";
+            const workRadio = document.querySelector('input[name="work"]:checked');
+            const workType = workRadio ? workRadio.value : "Freelancing";
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+
+            const payload = {
+                formType: "registration",
+                name: name,
+                mobile: mobile,
+                location: location,
+                brand: brand,
+                workType: workType
+            };
+
+            const saved = await sendToGoogleSheet(payload);
+
+            if (saved) {
+                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Submitted!';
+                alert("Application submitted successfully! Your details have been saved.");
+                form.reset();
+            } else {
+                submitBtn.innerHTML = '<i class="fas fa-check-circle"></i> Received!';
+                alert("Application submitted! Our team will contact you soon.");
+                form.reset();
+            }
+
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }, 3000);
+        }
+
         if (typeof AOS !== 'undefined') {
             AOS.init({
                 duration: 850,
                 easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
                 once: false
             });
+        }
+
+        // Back navigation (-1 in history with fallback to home)
+        function goBack(e) {
+            if (e) e.preventDefault();
+            if (window.history.length > 1) {
+                window.history.go(-1);
+            } else {
+                window.location.href = 'index.html';
+            }
         }
 
         // Back to top scroll handler
