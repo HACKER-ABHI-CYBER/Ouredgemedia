@@ -11,7 +11,7 @@
  * 4. Paste the Web App URL below into GOOGLE_SHEET_SCRIPT_URL:
  */
 
-const GOOGLE_SHEET_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYOUR_DEPLOYED_SCRIPT_ID/exec";
+const GOOGLE_SHEET_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwl8pNRiU_ShVaWieAm5ozMu7wssPswOCc6U3E20DsNkCUiBK_rH45hwM41WI7TFg0/exec";
 
 /**
  * Universal helper to send form & chat data to Google Sheet
